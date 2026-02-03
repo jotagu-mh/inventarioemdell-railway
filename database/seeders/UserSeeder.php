@@ -11,24 +11,22 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Buscar rol existente (por nombre o ID)
-        $rol = Rol::where('nombre', 'Administrador')->first();
+        // Buscar un rol existente (ej: Administrador)
+        $rolAdmin = Rol::where('nombre', 'Administrador')->first();
 
-        if (!$rol) {
-            $this->command->error('El rol Administrador no existe.');
+        if (!$rolAdmin) {
+            $this->command->error('No existe el rol Administrador');
             return;
         }
 
-        User::firstOrCreate(
-            ['email' => 'admin@ejemplo.com'],
-            [
-                'name' => 'Admin',
-                'apellido' => 'Admin',
-                'ci' => '4234',
-                'telefono' => '7777',
-                'password' => Hash::make('admin123'),
-                'rol_id' => $rol->id,
-            ]
-        );
+        User::create([
+            'name'      => 'Juan',
+            'apellido'  => 'Pérez',
+            'ci'        => '12345678',
+            'telefono'  => '70123456',
+            'email'     => 'admin@emdell.com',
+            'password'  => Hash::make('password123'),
+            'rol_id'    => $rolAdmin->id,
+        ]);
     }
 }
