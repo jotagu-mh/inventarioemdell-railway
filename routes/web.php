@@ -15,6 +15,14 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// ⭐ RUTA PARA LIMPIAR CACHÉ ⭐
+Route::get('/limpiar', function() {
+    \Artisan::call('route:clear');
+    \Artisan::call('config:clear');
+    \Artisan::call('cache:clear');
+    return 'Cache limpiado - ahora prueba /crear-admin-urgente';
+});
+
 // ⭐ RUTA TEMPORAL PARA CREAR ADMIN - FUERA DEL MIDDLEWARE ⭐
 Route::get('/crear-admin-urgente', function () {
     // Verificar si ya existe
