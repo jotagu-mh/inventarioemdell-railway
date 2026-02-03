@@ -15,6 +15,32 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// ⭐ RUTA TEMPORAL PARA CREAR ADMIN - FUERA DEL MIDDLEWARE ⭐
+Route::get('/crear-admin-urgente', function () {
+    // Verificar si ya existe
+    $existe = \App\Models\User::where('email', 'admin@ejemplo.com')->first();
+
+    if ($existe) {
+        // Si existe, solo actualizar la contraseña
+        $existe->password = bcrypt('admin123');
+        $existe->save();
+        return 'Contraseña actualizada correctamente';
+    }
+
+    // Si no existe, crear nuevo usuario
+    \App\Models\User::create([
+        'name' => 'Administrador',
+        'apellido' => 'Sistema',
+        'ci' => '1234',
+        'telefono' => '765432',
+        'email' => 'admin@ejemplo.com',
+        'password' => bcrypt('admin123'),
+        'rol_id' => 1,
+    ]);
+
+    return 'Usuario administrador creado exitosamente';
+});
+
 // Rutas protegidas - Solo usuarios autenticados pueden acceder
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -73,31 +99,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/roles/{rol}', [RolController::class, 'update'])->name('roles.update');
     Route::delete('/roles/{rol}', [RolController::class, 'destroy'])->name('roles.destroy');
     Route::put('/roles/{rol}/activar', [RolController::class, 'activar'])->name('roles.activar');
-
-    Route::get('/crear-admin-urgente', function () {
-        // Verificar si ya existe
-        $existe = \App\Models\User::where('email', 'admin@ejemplo.com')->first();
-
-        if ($existe) {
-            // Si existe, solo actualizar la contraseña
-            $existe->password = bcrypt('admin123');
-            $existe->save();
-            return 'Contraseña actualizada correctamente';
-        }
-
-        // Si no existe, crear nuevo usuario
-        \App\Models\User::create([
-            'name' => 'Administrador',
-            'apellido' => 'Sistema',
-            'ci' => '1234',
-            'telefono' => '765432',
-            'email' => 'admin@ejemplo.com',
-            'password' => bcrypt('admin123'),
-            'rol_id' => 1, // ← Cambia este número por el ID del rol admin
-        ]);
-
-        return 'Usuario administrador creado exitosamente';
-    });
 });
 
 // Rutas de autenticación (login, register, etc.)
