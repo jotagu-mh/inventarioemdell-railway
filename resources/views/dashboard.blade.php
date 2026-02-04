@@ -24,6 +24,7 @@
     </div>
 
     <!-- Materiales Activos 
+    Ajuste de ejemplo555
     
     <div class="col-md-3 mb-3">
         <div class="stats-card green">
