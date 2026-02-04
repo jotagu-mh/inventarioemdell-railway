@@ -328,8 +328,10 @@
         <div class="sidebar-footer">
             <div class="user-info-sidebar">
                 <i class="fas fa-user-circle"></i>
-                <div><strong>{{ Auth::user()->name }}</strong></div>
-                <div class="text-white-50" style="font-size: 0.9em;">{{ Auth::user()->email }}</div>
+                <div><strong>{{ Auth::user()?->name ?? 'Admin' }}</strong></div>
+                <div class="text-white-50" style="font-size: 0.9em;">{{ Auth::user()?->email ?? 'admin@emdell.com' }}
+                </div>
+
             </div>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
