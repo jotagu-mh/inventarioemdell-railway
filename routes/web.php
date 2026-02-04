@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 // Rutas protegidas - Solo usuarios autenticados pueden acceder
-Route::middleware(['auth', 'verified'])->group(function () {
+// Route::middleware(['auth', 'verified'])->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -98,7 +98,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         return 'Usuario administrador creado exitosamente';
     });
-});
+//});
 
 // Rutas de autenticación (login, register, etc.)
 require __DIR__ . '/auth.php';
