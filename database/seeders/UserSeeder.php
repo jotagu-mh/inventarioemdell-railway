@@ -19,14 +19,19 @@ class UserSeeder extends Seeder
             return;
         }
 
-        User::create([
-            'name'      => 'Juan',
-            'apellido'  => 'Pérez',
-            'ci'        => '12345678',
-            'telefono'  => '70123456',
-            'email'     => 'admin@emdell.com',
-            'password'  => Hash::make('password123'),
-            'rol_id'    => $rolAdmin->id,
-        ]);
+        // Crear o actualizar usuario admin
+        User::updateOrCreate(
+            ['email' => 'admin@emdell.com'], // evita duplicados
+            [
+                'name'     => 'Juan',
+                'apellido' => 'Pérez',
+                'ci'       => '12345678',
+                'telefono' => '70123456',
+                'password' => Hash::make(env('ADMIN_PASSWORD', 'password123')), // contraseña desde .env
+                'rol_id'   => $rolAdmin->id,
+            ]
+        );
+
+        $this->command->info('Usuario admin creado o actualizado correctamente.');
     }
 }
