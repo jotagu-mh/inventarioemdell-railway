@@ -15,5 +15,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+
+        Artisan::call('db:seed', [
+            '--class' => 'UserSeeder',
+            '--force' => true
+        ]);
     }
 }
