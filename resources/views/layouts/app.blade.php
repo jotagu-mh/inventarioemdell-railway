@@ -321,7 +321,6 @@
                     <i class="fas fa-user-tag"></i> Roles
                 </a>
             </li>
-
         </ul>
 
         <!-- Footer del Sidebar con info de usuario -->
@@ -330,16 +329,15 @@
                 <i class="fas fa-user-circle"></i>
                 <div><strong>{{ Auth::user()->name }}</strong></div>
                 <div class="text-white-50" style="font-size: 0.9em;">{{ Auth::user()->email }}</div>
-
             </div>
 
-        </div>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="btn btn-light btn-sm w-100">
-                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-            </button>
-        </form>
+            <!-- Botón de Cerrar Sesión dentro del footer -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-light btn-sm w-100 mt-2">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </form>
         </div>
     </nav>
 
