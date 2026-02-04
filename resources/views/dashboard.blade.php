@@ -1,16 +1,17 @@
 @extends('layouts.app')
 
-@section('page-title', 'Dashboard')
-@section('page-subtitle', 'Vista general del inventario')
+@section('page-title', 'Vista General del Inventario de Bienes de Consumo')
+@section('page-subtitle', '')
 
 @section('content')
 
 <!-- Tarjetas de Estadísticas -->
 <div class="row mb-4">
     <!-- Total Materiales -->
-    <div class="col-md-3 mb-3">
+    <div class="col-md-4 mb-3">
         <div class="stats-card blue">
             <div class="d-flex justify-content-between align-items-center">
+                <i class="fas fa-boxes fa-3x" style="color:#f97316;"></i>
                 <div>
                     <p class="mb-1">Total Materiales</p>
                     <h3>{{ $totalMateriales }}</h3>
@@ -22,7 +23,8 @@
         </div>
     </div>
 
-    <!-- Materiales Activos -->
+    <!-- Materiales Activos 
+    
     <div class="col-md-3 mb-3">
         <div class="stats-card green">
             <div class="d-flex justify-content-between align-items-center">
@@ -36,13 +38,15 @@
             </div>
         </div>
     </div>
+    -->
 
     <!-- Stock Bajo -->
-    <div class="col-md-3 mb-3">
+    <div class="col-md-4 mb-3">
         <div class="stats-card orange">
             <div class="d-flex justify-content-between align-items-center">
+                <i class="fas fa-exclamation-triangle fa-3x" style="color:#f97316;"></i>
                 <div>
-                    <p class="mb-1">Stock Bajo</p>
+                    <p class="mb-1">Materiales de baja Cantidad</p>
                     <h3>{{ $materialesStockBajo }}</h3>
                 </div>
                 <div class="icon">
@@ -52,7 +56,7 @@
         </div>
     </div>
 
-    <!-- Valor Inventario -->
+    <!-- Valor Inventario 
     <div class="col-md-3 mb-3">
         <div class="stats-card red">
             <div class="d-flex justify-content-between align-items-center">
@@ -66,6 +70,7 @@
             </div>
         </div>
     </div>
+    -->
 </div>
 
 <div class="row">
@@ -75,7 +80,7 @@
             <div class="card-header bg-white border-0 py-3">
                 <h5 class="mb-0">
                     <i class="fas fa-exclamation-circle text-warning"></i>
-                    Alertas de Stock Bajo
+                    Alertas de Materiales de baja Cantidad
                 </h5>
             </div>
             <div class="card-body">
@@ -85,7 +90,7 @@
                             <thead>
                                 <tr>
                                     <th>Material</th>
-                                    <th>Stock</th>
+                                    <th>Cantidad</th>
                                     <th>Mínimo</th>
                                 </tr>
                             </thead>
@@ -113,7 +118,7 @@
                 @else
                     <div class="text-center text-muted py-4">
                         <i class="fas fa-check-circle fa-3x mb-3"></i>
-                        <p>No hay materiales con stock bajo</p>
+                        <p>No hay materiales con cantidad baja</p>
                     </div>
                 @endif
             </div>
@@ -137,7 +142,7 @@
                                 <tr>
                                     <th>Material</th>
                                     <th>Precio</th>
-                                    <th>Stock</th>
+                                    <th>Cantidad</th>
                                 </tr>
                             </thead>
                             <tbody>

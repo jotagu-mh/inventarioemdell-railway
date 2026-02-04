@@ -104,12 +104,6 @@
                                         Recuérdame
                                     </label>
                                 </div>
-
-                                @if (Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}" class="small text-decoration-none">
-                                        ¿Olvidaste tu contraseña?
-                                    </a>
-                                @endif
                             </div>
 
                             <!-- Botón de login -->
